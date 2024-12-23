@@ -97,11 +97,6 @@ No matching IPs found.
 
 ---
 
-## License
-MIT License. Feel free to use, modify, and distribute this tool with attribution.
-
----
-
 ## Feedback
 If you have any questions or feedback, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/afif-hidayatullah).
 ```
