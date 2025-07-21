@@ -29,6 +29,7 @@ Ensure the following dependencies are installed before running the tool:
   pandas
   argparse
   tqdm
+  psutil
   openpyxl  # For handling Excel files
   ```
 
