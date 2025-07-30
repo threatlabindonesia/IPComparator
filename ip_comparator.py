@@ -179,8 +179,13 @@ def compare_ips_fast(origin_path, folder_path, output_file, include_threat_actor
         if output_file.endswith('.csv'):
             result.to_csv(output_file, index=False, chunksize=chunksize)
         else:
-            result.to_excel(output_file, index=False, engine='xlsxwriter')
-        print(f"[\u2713] Done. Results saved to {output_file}")
+            with pd.ExcelWriter(output_file, engine='xlsxwriter') as writer:
+                chunk_size = 1000000  # Adjust based on max rows per sheet
+                for i in range(0, len(result), chunk_size):
+                    chunk = result.iloc[i:i + chunk_size]
+                    sheet_name = f'Sheet_{i//chunk_size + 1}'
+                    chunk.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"[\u2713] Done. Results saved to {output_file} with multiple sheets")
 
     print(f"[+] End time: {time.strftime('%H:%M:%S')}")
 
